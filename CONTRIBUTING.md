@@ -5,8 +5,8 @@ This project is made possible by contributors like you, and we welcome any contr
 
 ## Environment
 
-- Ensure you have the latest version of Node and Yarn.
-- Run `yarn` to install all needed dev dependencies.
+-   Ensure you have the latest version of Node and Yarn.
+-   Run `yarn` to install all needed dev dependencies.
 
 ## Making Changes
 

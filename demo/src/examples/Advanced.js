@@ -1,67 +1,61 @@
-import React from 'react'
-import { compose, withHandlers } from 'recompose'
-
-import { MentionsInput, Mention } from '../../../src'
-
-import { provideExampleValue } from './higher-order'
-
-import defaultStyle from './defaultStyle'
-import defaultMentionStyle from './defaultMentionStyle'
-
-import { merge } from '../../../src/utils'
+import React from "react";
+import { compose, withHandlers } from "recompose";
+import { Mention, MentionsInput } from "../../../src";
+import { merge } from "../../../src/utils";
+import defaultMentionStyle from "./defaultMentionStyle";
+import defaultStyle from "./defaultStyle";
+import { provideExampleValue } from "./higher-order";
 
 const style = merge({}, defaultStyle, {
-  suggestions: {
-    list: {
-      maxHeight: 100,
-      overflow: 'auto',
-      position: 'absolute',
-      bottom: 14,
-    },
-  },
-})
+    suggestions: {
+        list: {
+            maxHeight: 100,
+            overflow: "auto",
+            position: "absolute",
+            bottom: 14
+        }
+    }
+});
 
 function Advanced({ value, data, onChange, onBlur, onAdd }) {
-  let inputEl = React.createRef()
-  return (
-    <div className="advanced">
-      <h3>Advanced options</h3>
+    let inputEl = React.createRef();
+    return (
+        <div className="advanced">
+            <h3>Advanced options</h3>
 
-      <MentionsInput
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-        style={style}
-        inputRef={inputEl}
-        a11ySuggestionsListLabel={"Suggested mentions"}
-      >
-        <Mention
-          markup="{{__id__}}"
-          displayTransform={id => `<-- ${id} -->`}
-          data={data}
-          onAdd={onAdd}
-          style={defaultMentionStyle}
-        />
-      </MentionsInput>
+            <MentionsInput
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                style={style}
+                inputRef={inputEl}
+                a11ySuggestionsListLabel={"Suggested mentions"}>
+                <Mention
+                    markup="{{__id__}}"
+                    displayTransform={(id) => `<-- ${id} -->`}
+                    data={data}
+                    onAdd={onAdd}
+                    style={defaultMentionStyle}
+                />
+            </MentionsInput>
 
-      <button
-        onClick={() => {
-          inputEl.current.focus()
-        }}
-      >
-        focus programmatically
-      </button>
-    </div>
-  )
+            <button
+                onClick={() => {
+                    inputEl.current.focus();
+                }}>
+                focus programmatically
+            </button>
+        </div>
+    );
 }
 
 export default compose(
-  provideExampleValue('Hi {{johndoe}}!'),
-  withHandlers({
-    onBlur: () => (ev, clickedOnSuggestion) => {
-      if (!clickedOnSuggestion) {
-        console.log('finished editing')
-      }
-    },
-  })
-)(Advanced)
+    provideExampleValue("Hi {{johndoe}}!"),
+    withHandlers({
+        onBlur: () => (ev, clickedOnSuggestion) => {
+            if (!clickedOnSuggestion) {
+                console.log("finished editing");
+            }
+        }
+    })
+)(Advanced);
