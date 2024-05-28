@@ -1,4 +1,5 @@
 # [React Mentions](https://react-mentions.vercel.app)
+
 [![REUSE status](https://api.reuse.software/badge/github.com/signavio/react-mentions)](https://api.reuse.software/info/github.com/signavio/react-mentions)
 
 A React component that let's you mention people in a textarea like you are used to on Facebook or Twitter.
@@ -22,7 +23,7 @@ yarn add react-mentions
 The package exports two React components for rendering the mentions textarea:
 
 ```javascript
-import { MentionsInput, Mention } from 'react-mentions'
+import { Mention, MentionsInput } from "react-mentions";
 ```
 
 `MentionsInput` is the main component rendering the textarea control. It takes one or multiple `Mention` components as its children. Each `Mention` component represents a data source for a specific class of mentionable objects, such as users, template variables, issues, etc.
@@ -31,16 +32,16 @@ Example:
 
 ```jsx
 <MentionsInput value={this.state.value} onChange={this.handleChange}>
-  <Mention
-    trigger="@"
-    data={this.props.users}
-    renderSuggestion={this.renderUserSuggestion}
-  />
-  <Mention
-    trigger="#"
-    data={this.requestTag}
-    renderSuggestion={this.renderTagSuggestion}
-  />
+    <Mention
+        trigger="@"
+        data={this.props.users}
+        renderSuggestion={this.renderUserSuggestion}
+    />
+    <Mention
+        trigger="#"
+        data={this.requestTag}
+        renderSuggestion={this.renderTagSuggestion}
+    />
 </MentionsInput>
 ```
 
@@ -68,13 +69,13 @@ The `MentionsInput` supports the following props for configuring the widget:
 Each data source is configured using a `Mention` component, which has the following props:
 
 | Prop name        | Type                                                         | Default value                               | Description                                                                                                                                            |
-| ---------------- | ------------------------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
 | trigger          | regexp or string                                             | `'@'`                                       | Defines the char sequence upon which to trigger querying the data source                                                                               |
 | data             | array or function (search, callback)                         | `null`                                      | An array of the mentionable data entries (objects with `id` & `display` keys, or a filtering function that returns an array based on a query parameter |
 | renderSuggestion | function (entry, search, highlightedDisplay, index, focused) | `null`                                      | Allows customizing how mention suggestions are rendered (optional)                                                                                     |
 | markup           | string                                                       | `'@[__display__](__id__)'`                  | A template string for the markup to use for mentions                                                                                                   |
 | displayTransform | function (id, display)                                       | returns `display`                           | Accepts a function for customizing the string that is displayed for a mention                                                                          |
-| regex            | RegExp                                                       | automatically derived from `markup` pattern | Allows providing a custom regular expression for parsing your markup and extracting the placeholder interpolations (optional)                          |  |
+| regex            | RegExp                                                       | automatically derived from `markup` pattern | Allows providing a custom regular expression for parsing your markup and extracting the placeholder interpolations (optional)                          |     |
 | onAdd            | function (id, display, startPos, endPos)                     | empty function                              | Callback invoked when a suggestion has been added (optional)                                                                                           |
 | appendSpaceOnAdd | boolean                                                      | `false`                                     | Append a space when a suggestion has been added (optional)                                                                                             |
 

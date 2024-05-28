@@ -1,1 +1,1 @@
-export { default as useExampleValue } from './useExampleValue'
+export { default as useExampleValue } from "./useExampleValue";
