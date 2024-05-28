@@ -189,7 +189,6 @@ const styled = defaultStyle(
         overflow: "hidden",
         whiteSpace: "pre-wrap",
         wordWrap: "break-word",
-        border: "1px solid transparent",
         textAlign: "start",
 
         "&singleLine": {

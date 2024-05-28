@@ -209,8 +209,14 @@ class MentionsInput extends React.Component {
 
             ...(!readOnly &&
                 !disabled && {
-                    onChange: this.handleChange,
-                    onSelect: this.handleSelect,
+                    onChange: (e) => {
+                        this.handleChange(e);
+                        this.handleSelect(e);
+                    },
+		    // this fixes react-shadow-dom issues:
+		    // React fails to execute `onSelect`- handlers in the shadow DOM,
+		    // that's why we only listen to `onChange` and `onKeyDown` events
+                    // onSelect: this.handleSelect,
                     onKeyDown: this.handleKeyDown,
                     onBlur: this.handleBlur,
                     onCompositionStart: this.handleCompositionStart,
@@ -648,6 +654,16 @@ class MentionsInput extends React.Component {
         if (Object.values(KEY).indexOf(ev.keyCode) >= 0) {
             ev.preventDefault();
             ev.stopPropagation();
+        }
+
+        if (ev.ctrlKey && ev.key === "n") {
+            this.shiftFocus(+1);
+            return;
+        }
+
+        if (ev.ctrlKey && ev.key === "p") {
+            this.shiftFocus(-1);
+            return;
         }
 
         switch (ev.keyCode) {
